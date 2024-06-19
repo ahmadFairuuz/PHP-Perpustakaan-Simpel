@@ -1,5 +1,7 @@
 <?php
+    include "database.php";
     session_start();
+    $message = "";
 
     if (isset($_POST['keluar'])){
         session_destroy();
@@ -7,8 +9,8 @@
     }
 
     if(isset($_POST['peminjaman'])){
-        if(isset($_SESSION['judulBuku'])){
-            echo "MAKSIMAL PEMINJAMAN 1 BUKU";
+        if(isset($_SESSION['perpus-simpel'])){
+            $message = "MAKSIMAL PEMINJAMAN 1 BUKU";
         }else{
             header("location: peminjaman.php");
         }   
@@ -17,9 +19,6 @@
     if(isset($_POST['pengembalian'])){
             header("location: pengembalian.php");
     }
-
-    
-
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +29,7 @@
     <title>Document</title>
 </head>
 <body>
-<?= include "header.html"?>
+<?php include "header.html"?>
     <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
         <input type="submit" name="keluar" value="Keluar Akun">
     </form>
@@ -41,15 +40,29 @@
         <input type="submit" name="pengembalian" value="PENGEMBALIAN">
     </form>
 
-    <h1>DAFTAR BUKU DIPINJAM</h1>
-    <p><?php echo $_SESSION['judulBuku']?><p>
+<h1>DAFTAR BUKU DIPINJAM</h1>
+<ul>
+    <?php
+    if (isset($_SESSION['perpus-simpel'])) {
+        $buku_dipinjam = $_SESSION['perpus-simpel'];
+        $borrowTime = $buku_dipinjam['borrow_time'];
+        $duration = $buku_dipinjam['durasi'];
+        $deadline = date('Y-m-d H:i:s', $borrowTime + ($duration * 86400)); // 86400 seconds in a day
+        
+        echo "<p>Buku: " . $buku_dipinjam['judul'] . " - Durasi: " . $buku_dipinjam['durasi'] . " hari</p>";
+        echo "<p>Deadline: " . $deadline . "</p>";
+    } else {
+        echo "<p>Tidak ada buku yang dipinjam.</p>";
+    }
+   ?>
+</ul>
+ 
+<?php
+    if (!empty($message)) {
+        echo "<script>alert('$message');</script>";
+    }
+?>
 
-<?= include "footer.html"?>
+<?php include "footer.html"?>
 </body>
 </html>
-
-<?php
-
-
-    echo "daftar buku dipinjam"
-?>

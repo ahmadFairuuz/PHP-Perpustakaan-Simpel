@@ -13,13 +13,18 @@
 
             $sql = "SELECT * FROM anggota WHERE username = '$username' 
                                             AND password = '$password'";
-       
+                                            
             $result = mysqli_query($db , $sql);
-            if(mysqli_num_rows($result)>0){
-                $data = mysqli_fetch_assoc($result);
-                $_SESSION['username'] = $data['username'];
-                $_SESSION['is_login'] = true;
-                header("location: dashboard.php");
+            if($data = mysqli_fetch_assoc($result)){
+
+                // LOGIN UNTUK ADMIN
+                if ($username === 'admin' && $password === 'admin') {
+                    header("Location: admin.php");
+                }else{
+                    $_SESSION['username'] = $data['username'];
+                    $_SESSION['is_login'] = true;
+                    header("Location: dashboard.php");
+                }
             }
         }
         else{
@@ -39,11 +44,14 @@
 <body>
 <?PHP include "header.html"?>
     <h3>LOGIN DISINI </h3>
+    <div>
     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
         <input type="text" placeholder="username" name="username">
         <input type="password" placeholder="password" name="password">
         <input type="submit" name="masuk" value="Masuk Sekarang">
     </form>
+    </div>
+    
 <?PHP include "footer.html"?>
 </body>
 </html>

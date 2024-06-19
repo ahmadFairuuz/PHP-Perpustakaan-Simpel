@@ -2,7 +2,7 @@
     $hostname = "localhost";
     $username = "root";
     $password = "";
-    $database_name = "perpustakaan";
+    $database_name = "perpuss";
 
     try{
         $db = mysqli_connect($hostname, 
