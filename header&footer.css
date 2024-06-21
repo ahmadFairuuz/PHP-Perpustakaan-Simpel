@@ -1,0 +1,95 @@
+p{
+  margin: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+  padding: 10px;
+  margin: 0;
+  width: 100%;
+  z-index: 999;
+  position: fixed;
+  box-shadow: 0px 0px 10px 10px aliceblue;
+  font-family: "Quicksand", sans-serif;
+}
+
+.logo-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar img, 
+footer img {
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
+  margin-left: 10px;
+}
+
+.navbar-logo{
+  font-size: 20px;
+  font-weight:900;
+  font-style: italic;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-nav{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.navbar-nav a,p{
+  color: black;
+  font-size: 20px;
+  text-decoration: none;
+  padding-left: 20px  ;
+  padding-right :20px;
+  transition: 0.3s; 
+}
+
+.navbar-nav p{
+  font-weight: 700;
+}
+
+.navbar-nav a:hover{
+  color:dodgerblue;
+  font-size: 25px;
+}
+
+.navbar-nav a.keluar:hover{
+  color: red;
+  font-size: 25px;
+}
+
+span{
+  text-transform: uppercase;
+}
+
+  footer{
+  position:relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 10px 10px aliceblue;
+  height: 100PX;
+  max-height: 100px;
+  font-family: "Quicksand", sans-serif;
+}
+
+footer .end{
+  margin: 0;
+  margin-left: 10px;
+  letter-spacing: 1px;
+  color: dodgerblue;
+  padding: 0;
+  font-size: 16px;
+}
+
